@@ -23,11 +23,11 @@ public class UserProfileViewModel extends ViewModel {
         this.userRepo = userRepo;
     }
 
-    public void init(String gender) {
+    public void init() {
         if (this.user != null) {
             return;
         }
-        user = userRepo.getUser(gender);
+        user = userRepo.initRepo();
     }
 
     public void withGender(String gender) {

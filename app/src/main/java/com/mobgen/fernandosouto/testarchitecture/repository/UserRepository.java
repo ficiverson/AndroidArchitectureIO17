@@ -17,9 +17,14 @@ import retrofit2.Response;
 
 public class UserRepository {
     private RandomUserApi randomUserApi;
-    private MutableLiveData<User> data = new MutableLiveData<>();
+    private MutableLiveData<User> data;
     public UserRepository(RandomUserApi randomUserApi){
         this.randomUserApi = randomUserApi;
+    }
+
+    public LiveData<User> initRepo(){
+        data = new MutableLiveData<>();
+        return data;
     }
 
     public LiveData<User> getUser(String gender) {

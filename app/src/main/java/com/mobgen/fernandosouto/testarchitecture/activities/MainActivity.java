@@ -43,7 +43,7 @@ public class MainActivity extends LifecycleActivity {
         female = (ButtonFloat)findViewById(R.id.fb_female);
 
         AppComponent.from(this).inject(this);
-        viewModel.init(gender);
+        viewModel.init();
 
         viewModel.getUser().observe(this, new Observer<User>() {
             @Override
