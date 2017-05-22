@@ -14,7 +14,7 @@ import javax.inject.Inject;
 
 public class UserProfileViewModel extends ViewModel {
 
-    private String userId;
+    private String gender;
     private LiveData<User> user;
     private UserRepository userRepo;
 
@@ -23,11 +23,15 @@ public class UserProfileViewModel extends ViewModel {
         this.userRepo = userRepo;
     }
 
-    public void init(String userId) {
+    public void init(String gender) {
         if (this.user != null) {
             return;
         }
-        user = userRepo.getUser(userId);
+        user = userRepo.getUser(gender);
+    }
+
+    public void withGender(String gender) {
+        userRepo.getUser(gender);
     }
     public LiveData<User> getUser() {
         return user;

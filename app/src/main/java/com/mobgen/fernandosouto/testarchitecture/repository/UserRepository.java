@@ -7,9 +7,6 @@ import com.mobgen.fernandosouto.testarchitecture.model.Result;
 import com.mobgen.fernandosouto.testarchitecture.model.User;
 import com.mobgen.fernandosouto.testarchitecture.network.RandomUserApi;
 
-import java.util.List;
-import java.util.Random;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,14 +17,12 @@ import retrofit2.Response;
 
 public class UserRepository {
     private RandomUserApi randomUserApi;
-
+    private MutableLiveData<User> data = new MutableLiveData<>();
     public UserRepository(RandomUserApi randomUserApi){
         this.randomUserApi = randomUserApi;
     }
 
     public LiveData<User> getUser(String gender) {
-        // This is not an optimal implementation, we'll fix it below
-        final MutableLiveData<User> data = new MutableLiveData<>();
         randomUserApi.findByGender(gender).enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
